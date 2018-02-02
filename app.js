@@ -1,11 +1,35 @@
-var a = 1;
-var b = 2;
+// function statement
 
-var c = a + b;
+function greet() {
+    console.log('Hi');
+}
 
-console.log(c);
+greet();
 
-console.log('Hello World');
+// Functions are first-class
+
+function logGreeting(fn) {
+
+    fn();
+}
+
+logGreeting(greet);
+
+//function expression
+var greetMe = function() {
+    console.log('Hi Karmandeep');
+}
+
+greetMe();
+
+// it's First Class
+
+logGreeting(greetMe);
 
 
+// Use Function Expression on the fly
+
+logGreeting(function() {
+    console.log('Hello Karmandeep!');
+})
 
