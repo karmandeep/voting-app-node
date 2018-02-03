@@ -1,23 +1,16 @@
-//pass by value
+var firstname = 'Jane';
 
-function change(b) {
-    b = 2;
-}
+(function(lastname) {
 
-var a = 1;
-change(a);
+    var firstname = 'John';
+    console.log(firstname);
+    console.log(lastname);
 
-console.log(a);
+}('Doe'));
 
+console.log(firstname);
 
-//Pass By Reference
+//The variables inside the invoked functions are completely seperate and 
+//do not affect anything which is outside.
 
-function changeObj(d) {
-    d.prop1 = function() {};
-    d.prop2 = {};
-}
-
-var c = {};
-c.prop1 = {};
-changeObj(c);
-console.log(c);
+// This is a n imiditaely invoked function expression and that is why we use it.
