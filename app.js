@@ -1,22 +1,23 @@
-function Person(firstname, lastname) {
+//pass by value
 
-    this.firstname = firstname;
-    this.lastname = lastname;
-};
+function change(b) {
+    b = 2;
+}
 
-Person.prototype.greet = function() {
-    console.log('Hello, ' + this.firstname + ' ' + this.lastname);
-};
+var a = 1;
+change(a);
+
+console.log(a);
 
 
-var john = new Person('John' , 'Doe');
-john.greet();
+//Pass By Reference
 
-var jane = new Person('Jane' , 'Doe');
-jane.greet();
+function changeObj(d) {
+    d.prop1 = function() {};
+    d.prop2 = {};
+}
 
-//To see How the Prototype looks like
-console.log(john.__proto__);
-console.log(jane.__proto__);
-
-console.log(john.__proto__ === jane.__proto__);
+var c = {};
+c.prop1 = {};
+changeObj(c);
+console.log(c);
