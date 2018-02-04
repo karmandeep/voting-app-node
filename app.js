@@ -1,7 +1,8 @@
-var greet = require('./greet');
-var greet2 = require('./greet2');
-greet2.greet();
+//If its a Custom Module the use require('./util') -> Saying that it is LOCAL
+var util = require('util');
+//util is a NODE NATIVE MODULE
 
+var name = 'Karmandeep';
+var greeting = util.format('Hello, %s', name);
 
-/*************************** */
-//JUST USE module.exports [DONT"T THINK ABOUT THE EXPORTS]
+util.log(greeting);
