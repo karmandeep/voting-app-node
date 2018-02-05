@@ -1,32 +1,15 @@
-// object properties and methods
+var Emitter = require('./emitter');
 
-var obj = {
-    greet: 'Hello'
-}
+var emtr = new Emitter();
 
-console.log(obj.greet);
-
-console.log(obj['greet']);
-
-var prop = 'greet';
-
-console.log(obj[prop]);
-
-//Functions and Arrays
-var arr = [];
-
-arr.push(function(){
-    console.log('Hello world 1');
+emtr.on('greet', function() {
+    console.log('Somewhere, someone said hello.');
 });
 
-arr.push(function(){
-    console.log('Hello world 2');
+emtr.on('greet' , function(){
+    console.log('A greeting occured!');
 });
 
-arr.push(function(){
-    console.log('Hello world 3');
-});
+console.log('Hello!');
 
-arr.forEach(function(item) {
-    item();
-});
+emtr.emit('greet');
