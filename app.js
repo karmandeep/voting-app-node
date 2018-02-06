@@ -1,40 +1,20 @@
-var EventEmitter = require('events');
+var name = "John Doe";
 
-var util = require('util');
+var greet = 'Hello ' + name;
 
+//With ES6 there is something called template literals.
 
-//Create own function constructor
+//Template Literals make it easier to build string, to concatinate strings together
 
-function Greetr() {
-    this.greeting = 'Hello world!';
-}
-
-//Any objects created from Greetr shoudl also have to the Methods and properties.
-//On the prototype, property of Event Emitter, So esentially any new objects
-//created from Greetr would also look at the event Emitter Methods and Proerties.
-
-util.inherits(Greetr, EventEmitter);
-
-//Add my own EXTRA Methods and properties.
-
-Greetr.prototype.greet = function(data) {
-    console.log(this.greeting + ': ' + data);
-    this.emit('greet', data);
-}
-
-//Ojects that are being created will have access to both the greetr 
-//Methods and properties and the Event Emitter Methods and properties.
-
-//Create New Object
-var greeter1 = new Greetr();
-
-//Because this has both access to the peroperties of both greeter.
-
-greeter1.on('greet', function(data){
-    console.log('Someone greeted!' + data);
-});
-
-greeter1.greet('Karmandeep');
+//Template Literal
+//It let me insert javascript code without having to stop the string and use
+//Pluses to concatinate and everything else.
 
 
+//This is a Lot faster and easier and less prone to mistakes.
 
+var greet2 = `Hello ${ name }`; 
+
+
+console.log(greet);
+console.log(greet2);
