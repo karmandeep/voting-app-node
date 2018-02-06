@@ -1,31 +1,40 @@
-var person = {
-    firstname: '',
-    lastname: '',
-    greet: function() {
-        return this.firstname + ' ' + this.lastname;
-    }
+var EventEmitter = require('events');
+
+var util = require('util');
+
+
+//Create own function constructor
+
+function Greetr() {
+    this.greeting = 'Hello world!';
 }
 
-//this is an empty object
-var john = Object.create(person);
-//Can overwrite them or block the ones on the prototype by simply adding properties
-//and methonds with same name - dirctly to the object.
+//Any objects created from Greetr shoudl also have to the Methods and properties.
+//On the prototype, property of Event Emitter, So esentially any new objects
+//created from Greetr would also look at the event Emitter Methods and Proerties.
 
-//So whe the javascript looks for firstname it will find it on the john object and not bother
-//Going down the chain to find it on person.
+util.inherits(Greetr, EventEmitter);
 
-john.firstname = 'John';
-john.lastname = 'Doe';
+//Add my own EXTRA Methods and properties.
 
-var jane = Object.create(person);
-jane.firstname = 'Jane';
-jane.lastname = 'Doe';
+Greetr.prototype.greet = function(data) {
+    console.log(this.greeting + ': ' + data);
+    this.emit('greet', data);
+}
 
-//So both of these objects have access down the prototype chain to that method.
-//Object.create is a very simple fast and clean way to setup in-heritance
-//That is objects being able to use methods and properties of other objects
+//Ojects that are being created will have access to both the greetr 
+//Methods and properties and the Event Emitter Methods and properties.
+
+//Create New Object
+var greeter1 = new Greetr();
+
+//Because this has both access to the peroperties of both greeter.
+
+greeter1.on('greet', function(data){
+    console.log('Someone greeted!' + data);
+});
+
+greeter1.greet('Karmandeep');
 
 
 
-console.log(john.greet());
-console.log(jane.greet());
