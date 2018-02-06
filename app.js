@@ -1,15 +1,17 @@
-var Emitter = require('./emitter');
+//IN This Code we used the node event emitter.
+
+var Emitter = require('events');
+var eventConfig = require('./config').events;
 
 var emtr = new Emitter();
 
-emtr.on('greet', function() {
-    console.log('Somewhere, someone said hello.');
+emtr.on(eventConfig.GREET, function(){
+    console.log('Somewhere, someoen said hello');
 });
 
-emtr.on('greet' , function(){
-    console.log('A greeting occured!');
+emtr.on(eventConfig.GREET, function(){
+    console.log('A greeting occured');
 });
 
 console.log('Hello!');
-
-emtr.emit('greet');
+emtr.emit(eventConfig.GREET);
