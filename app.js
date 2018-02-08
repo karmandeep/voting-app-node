@@ -1,21 +1,17 @@
-var obj = {
-    name: 'John Doe',
-    greet: function(param) {
-        console.log(`Hello ${ this.name }`);
-    }
+var EventEmitter = require('events');
+var util = require('util');
+
+function Greetr() {
+    EventEmitter.call(this);
+    this.greeting = 'Hello world!';
 }
 
-obj.greet();
-//Passing an object to this function via .call and what that really means is
-//this object would become the this keyword.
-//So this function would run as normal, where-ever i see the the this keyword
-//Pointing to the parent object
+util.inherits(Greetr, EventEmitter);
 
-//It will instill point to th eobject that i passed in via call.
-//Some essentially borrowing this function and giving it my own object to service this
-//keyword.
+Greetr.prototype.greet = function(data) {
+    console.log(this.greeting + ': ' + data);
+    this.emit('greet' , data);
+}
 
-
-obj.greet.call({ name: 'Jane Doe' });
-
-obj.greet.apply({ name: 'Jane Doe' });
+//var greeter1 = new Greetr();
+console.log(Greetr.greeting);
